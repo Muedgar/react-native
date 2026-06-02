@@ -1,3 +1,10 @@
+export * from './calculators/bmi_calc';
+export * from './calculators/simple';
 export * from './clocks/simple';
+export * from './clocks/stopwatch';
 export * from './couters/counter';
+export * from './currency converter/simple';
+export * from './image gallery/simple';
+export * from './quiz/simple';
 export * from './todos/simple';
+

@@ -1,10 +1,10 @@
-import SimpleTodo from "@/components/exercises/todos/simple";
+import AssetImageGallery from "@/components/exercises/image gallery/simple";
 
 
 export default function HomeScreen() {
 
 
   return (
-    <SimpleTodo />
+    <AssetImageGallery />
   );
 }
