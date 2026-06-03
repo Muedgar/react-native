@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState } from 'react';
 import {
   Image,
   ImageSourcePropType,
@@ -6,64 +6,62 @@ import {
   ScrollView,
   Text,
   View,
-} from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+} from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 type GalleryImage = {
   id: string;
   title: string;
-  category: "Nature" | "City" | "People";
+  category: 'Nature' | 'City' | 'People';
   image: ImageSourcePropType;
   height: number;
 };
 
 const galleryImages: GalleryImage[] = [
   {
-    id: "1",
-    title: "Mountain View",
-    category: "Nature",
-    image: require("./assets/mountain.jpg"),
+    id: '1',
+    title: 'Mountain View',
+    category: 'Nature',
+    image: require('./assets/mountain.jpg'),
     height: 220,
   },
   {
-    id: "2",
-    title: "City Lights",
-    category: "City",
-    image: require("./assets/city.jpg"),
+    id: '2',
+    title: 'City Lights',
+    category: 'City',
+    image: require('./assets/city.jpg'),
     height: 170,
   },
   {
-    id: "3",
-    title: "Forest Walk",
-    category: "Nature",
-    image: require("./assets/mountain.jpg"),
+    id: '3',
+    title: 'Forest Walk',
+    category: 'Nature',
+    image: require('./assets/mountain.jpg'),
     height: 190,
   },
   {
-    id: "4",
-    title: "Portrait Mood",
-    category: "People",
-    image: require("./assets/city.jpg"),
+    id: '4',
+    title: 'Portrait Mood',
+    category: 'People',
+    image: require('./assets/city.jpg'),
     height: 240,
   },
 ];
 
-const categories = ["All", "Nature", "City", "People"] as const;
+const categories = ['All', 'Nature', 'City', 'People'] as const;
 
 export default function AssetImageGallery() {
   const [activeCategory, setActiveCategory] =
-    useState<(typeof categories)[number]>("All");
+    useState<(typeof categories)[number]>('All');
 
   const [selectedImage, setSelectedImage] = useState<GalleryImage>(
-    galleryImages[0]
+    galleryImages[0],
   );
 
   const filteredImages = useMemo(() => {
-    if (activeCategory === "All") return galleryImages;
+    if (activeCategory === 'All') return galleryImages;
 
-    return galleryImages.filter(
-      (item) => item.category === activeCategory
-    );
+    return galleryImages.filter((item) => item.category === activeCategory);
   }, [activeCategory]);
 
   const leftColumn = filteredImages.filter((_, index) => index % 2 === 0);
@@ -74,9 +72,7 @@ export default function AssetImageGallery() {
       <View className="flex-1 px-5 pt-6">
         <View className="flex-row items-start justify-between">
           <View>
-            <Text className="text-4xl font-extrabold text-white">
-              Gallery
-            </Text>
+            <Text className="text-4xl font-extrabold text-white">Gallery</Text>
 
             <Text className="mt-2 text-base text-slate-400">
               Local asset image collection
@@ -124,12 +120,12 @@ export default function AssetImageGallery() {
                   key={category}
                   onPress={() => setActiveCategory(category)}
                   className={`rounded-full px-5 py-3 ${
-                    active ? "bg-white" : "bg-white/10"
+                    active ? 'bg-white' : 'bg-white/10'
                   }`}
                 >
                   <Text
                     className={`font-extrabold ${
-                      active ? "text-slate-950" : "text-white"
+                      active ? 'text-slate-950' : 'text-white'
                     }`}
                   >
                     {category}
@@ -140,9 +136,7 @@ export default function AssetImageGallery() {
           </View>
         </ScrollView>
 
-        <Text className="mt-6 text-xl font-extrabold text-white">
-          Explore
-        </Text>
+        <Text className="mt-6 text-xl font-extrabold text-white">Explore</Text>
 
         <ScrollView
           className="mt-4 flex-1"
@@ -190,7 +184,7 @@ function GalleryCard({
     <Pressable
       onPress={onPress}
       className={`overflow-hidden rounded-[28px] border ${
-        selected ? "border-white" : "border-white/10"
+        selected ? 'border-white' : 'border-white/10'
       } bg-white/10`}
     >
       <Image
@@ -201,9 +195,7 @@ function GalleryCard({
       />
 
       <View className="p-4">
-        <Text className="text-lg font-extrabold text-white">
-          {item.title}
-        </Text>
+        <Text className="text-lg font-extrabold text-white">{item.title}</Text>
 
         <Text className="mt-1 text-sm font-semibold text-slate-400">
           {item.category}

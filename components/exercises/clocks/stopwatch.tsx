@@ -1,6 +1,6 @@
-import { useEffect, useMemo, useRef, useState } from "react";
-import { Pressable, ScrollView, Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { Pressable, ScrollView, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 type Lap = {
   id: string;
@@ -12,10 +12,10 @@ function formatTime(ms: number) {
   const seconds = Math.floor((ms % 60000) / 1000);
   const centiseconds = Math.floor((ms % 1000) / 10);
 
-  return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(
+  return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(
     2,
-    "0"
-  )}.${String(centiseconds).padStart(2, "0")}`;
+    '0',
+  )}.${String(centiseconds).padStart(2, '0')}`;
 }
 
 export default function ProStopwatch() {
@@ -42,7 +42,7 @@ export default function ProStopwatch() {
   }, [running]);
 
   const lapStats = useMemo(() => {
-    if (laps.length === 0) return { best: "", worst: "" };
+    if (laps.length === 0) return { best: '', worst: '' };
 
     const sorted = [...laps].sort((a, b) => a.time - b.time);
 
@@ -84,9 +84,7 @@ export default function ProStopwatch() {
     <SafeAreaView className="flex-1 bg-[#090B10]">
       <View className="flex-1 px-5 pt-6">
         <View>
-          <Text className="text-4xl font-extrabold text-white">
-            Stopwatch
-          </Text>
+          <Text className="text-4xl font-extrabold text-white">Stopwatch</Text>
           <Text className="mt-2 text-base text-slate-500">
             Pro lap timer for focused training
           </Text>
@@ -123,11 +121,11 @@ export default function ProStopwatch() {
             <Pressable
               onPress={handleStartPause}
               className={`flex-[1.4] rounded-3xl py-5 ${
-                running ? "bg-orange-500" : "bg-cyan-400"
+                running ? 'bg-orange-500' : 'bg-cyan-400'
               }`}
             >
               <Text className="text-center text-lg font-extrabold text-slate-950">
-                {running ? "Pause" : "Start"}
+                {running ? 'Pause' : 'Start'}
               </Text>
             </Pressable>
 
@@ -158,10 +156,10 @@ export default function ProStopwatch() {
             </Text>
             <Text
               className={`mt-2 text-3xl font-extrabold ${
-                running ? "text-cyan-400" : "text-orange-400"
+                running ? 'text-cyan-400' : 'text-orange-400'
               }`}
             >
-              {running ? "Live" : "Paused"}
+              {running ? 'Live' : 'Paused'}
             </Text>
           </View>
         </View>
@@ -170,7 +168,10 @@ export default function ProStopwatch() {
           Lap History
         </Text>
 
-        <ScrollView className="mt-4 flex-1" showsVerticalScrollIndicator={false}>
+        <ScrollView
+          className="mt-4 flex-1"
+          showsVerticalScrollIndicator={false}
+        >
           {laps.length === 0 ? (
             <View className="rounded-3xl border border-dashed border-slate-700 p-8">
               <Text className="text-center text-base font-semibold text-slate-500">
@@ -196,13 +197,13 @@ export default function ProStopwatch() {
                     <Text
                       className={`mt-1 text-xs font-bold uppercase ${
                         isBest
-                          ? "text-emerald-400"
+                          ? 'text-emerald-400'
                           : isWorst
-                          ? "text-orange-400"
-                          : "text-slate-500"
+                            ? 'text-orange-400'
+                            : 'text-slate-500'
                       }`}
                     >
-                      {isBest ? "Best Lap" : isWorst ? "Slowest Lap" : "Split"}
+                      {isBest ? 'Best Lap' : isWorst ? 'Slowest Lap' : 'Split'}
                     </Text>
                   </View>
 

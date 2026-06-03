@@ -1,12 +1,6 @@
-import { useMemo, useState } from "react";
-import {
-    Pressable,
-    ScrollView,
-    Text,
-    TextInput,
-    View,
-} from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { useMemo, useState } from 'react';
+import { Pressable, ScrollView, Text, TextInput, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 type Note = {
   id: string;
@@ -18,28 +12,28 @@ type Note = {
 
 const starterNotes: Note[] = [
   {
-    id: "1",
-    title: "React Native idea",
-    body: "Build small apps every day to master UI, state, and layout.",
+    id: '1',
+    title: 'React Native idea',
+    body: 'Build small apps every day to master UI, state, and layout.',
     pinned: true,
-    createdAt: "Today",
+    createdAt: 'Today',
   },
   {
-    id: "2",
-    title: "Shopping list",
-    body: "Rice, eggs, bananas, water, coffee.",
+    id: '2',
+    title: 'Shopping list',
+    body: 'Rice, eggs, bananas, water, coffee.',
     pinned: false,
-    createdAt: "Yesterday",
+    createdAt: 'Yesterday',
   },
 ];
 
 export default function ProNotesApp() {
   const [notes, setNotes] = useState<Note[]>(starterNotes);
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState('');
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
-  const [title, setTitle] = useState("");
-  const [body, setBody] = useState("");
+  const [title, setTitle] = useState('');
+  const [body, setBody] = useState('');
 
   const filteredNotes = useMemo(() => {
     return notes
@@ -57,15 +51,15 @@ export default function ProNotesApp() {
 
     const newNote: Note = {
       id: Date.now().toString(),
-      title: title.trim() || "Untitled Note",
+      title: title.trim() || 'Untitled Note',
       body: body.trim(),
       pinned: false,
-      createdAt: "Just now",
+      createdAt: 'Just now',
     };
 
     setNotes((prev) => [newNote, ...prev]);
-    setTitle("");
-    setBody("");
+    setTitle('');
+    setBody('');
     setSelectedId(newNote.id);
   };
 
@@ -80,8 +74,8 @@ export default function ProNotesApp() {
   const togglePin = (id: string) => {
     setNotes((prev) =>
       prev.map((note) =>
-        note.id === id ? { ...note, pinned: !note.pinned } : note
-      )
+        note.id === id ? { ...note, pinned: !note.pinned } : note,
+      ),
     );
   };
 
@@ -99,9 +93,7 @@ export default function ProNotesApp() {
           </View>
 
           <View className="rounded-full bg-stone-950 px-4 py-3">
-            <Text className="font-extrabold text-white">
-              {notes.length}
-            </Text>
+            <Text className="font-extrabold text-white">{notes.length}</Text>
           </View>
         </View>
 
@@ -175,13 +167,13 @@ export default function ProNotesApp() {
                   key={note.id}
                   onPress={() => setSelectedId(note.id)}
                   className={`mb-4 rounded-[30px] p-5 ${
-                    active ? "bg-amber-300" : "bg-white"
+                    active ? 'bg-amber-300' : 'bg-white'
                   }`}
                 >
                   <View className="flex-row items-start justify-between gap-4">
                     <View className="flex-1">
                       <Text className="text-xl font-extrabold text-stone-950">
-                        {note.pinned ? "📌 " : ""}
+                        {note.pinned ? '📌 ' : ''}
                         {note.title}
                       </Text>
 
@@ -189,7 +181,7 @@ export default function ProNotesApp() {
                         numberOfLines={2}
                         className="mt-2 text-base leading-6 text-stone-600"
                       >
-                        {note.body || "No extra details."}
+                        {note.body || 'No extra details.'}
                       </Text>
 
                       <Text className="mt-4 text-xs font-bold uppercase text-stone-400">
@@ -203,7 +195,7 @@ export default function ProNotesApp() {
                         className="rounded-full bg-stone-950 px-3 py-2"
                       >
                         <Text className="font-bold text-white">
-                          {note.pinned ? "Unpin" : "Pin"}
+                          {note.pinned ? 'Unpin' : 'Pin'}
                         </Text>
                       </Pressable>
 
@@ -211,9 +203,7 @@ export default function ProNotesApp() {
                         onPress={() => deleteNote(note.id)}
                         className="rounded-full bg-red-100 px-3 py-2"
                       >
-                        <Text className="font-bold text-red-500">
-                          Delete
-                        </Text>
+                        <Text className="font-bold text-red-500">Delete</Text>
                       </Pressable>
                     </View>
                   </View>
@@ -232,7 +222,7 @@ export default function ProNotesApp() {
               {selectedNote.title}
             </Text>
             <Text className="mt-2 text-sm leading-5 text-stone-300">
-              {selectedNote.body || "No body text."}
+              {selectedNote.body || 'No body text.'}
             </Text>
           </View>
         )}

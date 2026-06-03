@@ -1,11 +1,11 @@
-import { useMemo, useState } from "react";
-import { Pressable, Text, TextInput, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { useMemo, useState } from 'react';
+import { Pressable, Text, TextInput, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function BMICalculator() {
-  const [height, setHeight] = useState("170");
-  const [weight, setWeight] = useState("65");
-  const [gender, setGender] = useState<"male" | "female">("male");
+  const [height, setHeight] = useState('170');
+  const [weight, setWeight] = useState('65');
+  const [gender, setGender] = useState<'male' | 'female'>('male');
 
   const bmi = useMemo(() => {
     const h = Number(height) / 100;
@@ -16,29 +16,27 @@ export default function BMICalculator() {
     return w / (h * h);
   }, [height, weight]);
 
-  const bmiText = bmi ? bmi.toFixed(1) : "0.0";
+  const bmiText = bmi ? bmi.toFixed(1) : '0.0';
 
   const status =
     bmi < 18.5
-      ? "Underweight"
+      ? 'Underweight'
       : bmi < 25
-      ? "Healthy"
-      : bmi < 30
-      ? "Overweight"
-      : "Obese";
+        ? 'Healthy'
+        : bmi < 30
+          ? 'Overweight'
+          : 'Obese';
 
   const message =
-    status === "Healthy"
-      ? "Your BMI is within the healthy range."
-      : "BMI is a simple guide. Use it with other health signs.";
+    status === 'Healthy'
+      ? 'Your BMI is within the healthy range.'
+      : 'BMI is a simple guide. Use it with other health signs.';
 
   return (
     <SafeAreaView className="flex-1 bg-[#0B1020]">
       <View className="flex-1 px-5 pt-6">
         <View>
-          <Text className="text-4xl font-extrabold text-white">
-            BMI Pro
-          </Text>
+          <Text className="text-4xl font-extrabold text-white">BMI Pro</Text>
           <Text className="mt-2 text-base text-slate-400">
             Smart body mass calculator
           </Text>
@@ -70,17 +68,15 @@ export default function BMICalculator() {
         </View>
 
         <View className="mt-5 flex-row gap-3">
-          {["male", "female"].map((item) => (
+          {['male', 'female'].map((item) => (
             <Pressable
               key={item}
-              onPress={() => setGender(item as "male" | "female")}
+              onPress={() => setGender(item as 'male' | 'female')}
               className={`flex-1 rounded-3xl p-5 ${
-                gender === item ? "bg-indigo-500" : "bg-[#151B2E]"
+                gender === item ? 'bg-indigo-500' : 'bg-[#151B2E]'
               }`}
             >
-              <Text className="text-3xl">
-                {item === "male" ? "♂️" : "♀️"}
-              </Text>
+              <Text className="text-3xl">{item === 'male' ? '♂️' : '♀️'}</Text>
               <Text className="mt-3 text-lg font-bold capitalize text-white">
                 {item}
               </Text>
@@ -90,9 +86,7 @@ export default function BMICalculator() {
 
         <View className="mt-5 flex-row gap-3">
           <View className="flex-1 rounded-3xl bg-[#151B2E] p-5">
-            <Text className="text-sm font-semibold text-slate-400">
-              Height
-            </Text>
+            <Text className="text-sm font-semibold text-slate-400">Height</Text>
             <View className="mt-4 flex-row items-end">
               <TextInput
                 value={height}
@@ -107,9 +101,7 @@ export default function BMICalculator() {
           </View>
 
           <View className="flex-1 rounded-3xl bg-[#151B2E] p-5">
-            <Text className="text-sm font-semibold text-slate-400">
-              Weight
-            </Text>
+            <Text className="text-sm font-semibold text-slate-400">Weight</Text>
             <View className="mt-4 flex-row items-end">
               <TextInput
                 value={weight}
@@ -125,9 +117,7 @@ export default function BMICalculator() {
         </View>
 
         <View className="mt-5 rounded-3xl bg-[#151B2E] p-5">
-          <Text className="text-lg font-bold text-white">
-            BMI Formula
-          </Text>
+          <Text className="text-lg font-bold text-white">BMI Formula</Text>
 
           <Text className="mt-3 text-base text-slate-400">
             BMI = weight / height²

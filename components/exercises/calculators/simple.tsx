@@ -1,75 +1,75 @@
-import { useState } from "react";
-import { Pressable, Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { useState } from 'react';
+import { Pressable, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const buttons = [
-  ["⌫", "C", "%", "÷"],
-  ["7", "8", "9", "×"],
-  ["4", "5", "6", "-"],
-  ["1", "2", "3", "+"],
-  ["±", "0", ".", "="],
+  ['⌫', 'C', '%', '÷'],
+  ['7', '8', '9', '×'],
+  ['4', '5', '6', '-'],
+  ['1', '2', '3', '+'],
+  ['±', '0', '.', '='],
 ];
 
-const operators = ["+", "-", "×", "÷", "%"];
+const operators = ['+', '-', '×', '÷', '%'];
 
 export default function SimpleCalculator() {
-  const [expression, setExpression] = useState("");
-  const [result, setResult] = useState("0");
+  const [expression, setExpression] = useState('');
+  const [result, setResult] = useState('0');
 
   const calculate = (value: string, showError = false) => {
     try {
       if (!value) {
-        setResult("0");
+        setResult('0');
         return;
       }
 
       const lastChar = value[value.length - 1];
 
-      if ([...operators, "."].includes(lastChar)) {
-        if (showError) setResult("Invalid expression");
+      if ([...operators, '.'].includes(lastChar)) {
+        if (showError) setResult('Invalid expression');
         return;
       }
 
-      const clean = value.replaceAll("×", "*").replaceAll("÷", "/");
+      const clean = value.replaceAll('×', '*').replaceAll('÷', '/');
 
       if (!/^[0-9+\-*/%.()\s]+$/.test(clean)) return;
 
       const answer = Function(`"use strict"; return (${clean})`)();
 
       if (!Number.isFinite(answer)) {
-        if (showError) setResult("Cannot divide by 0");
+        if (showError) setResult('Cannot divide by 0');
         return;
       }
 
       setResult(Number(answer.toFixed(8)).toString());
     } catch {
-      if (showError) setResult("Invalid expression");
+      if (showError) setResult('Invalid expression');
     }
   };
 
   const handlePress = (btn: string) => {
-    if (btn === "C") {
-      setExpression("");
-      setResult("0");
+    if (btn === 'C') {
+      setExpression('');
+      setResult('0');
       return;
     }
 
-    if (btn === "⌫") {
+    if (btn === '⌫') {
       const next = expression.slice(0, -1);
       setExpression(next);
       calculate(next);
       return;
     }
 
-    if (btn === "=") {
+    if (btn === '=') {
       calculate(expression, true);
       return;
     }
 
-    if (btn === "±") {
+    if (btn === '±') {
       if (!expression) return;
 
-      const next = expression.startsWith("-")
+      const next = expression.startsWith('-')
         ? expression.slice(1)
         : `-${expression}`;
 
@@ -87,15 +87,15 @@ export default function SimpleCalculator() {
       return;
     }
 
-    if (btn === "." && lastChar === ".") return;
+    if (btn === '.' && lastChar === '.') return;
 
     const next = expression + btn;
     setExpression(next);
     calculate(next);
   };
 
-  const isOperator = (btn: string) => ["÷", "×", "-", "+", "="].includes(btn);
-  const isTop = (btn: string) => ["⌫", "C", "%"].includes(btn);
+  const isOperator = (btn: string) => ['÷', '×', '-', '+', '='].includes(btn);
+  const isTop = (btn: string) => ['⌫', 'C', '%'].includes(btn);
 
   return (
     <SafeAreaView className="flex-1 bg-[#111111]">
@@ -105,7 +105,7 @@ export default function SimpleCalculator() {
             numberOfLines={1}
             className="text-right text-5xl font-light text-white"
           >
-            {expression || "0"}
+            {expression || '0'}
           </Text>
 
           <Text
@@ -125,14 +125,12 @@ export default function SimpleCalculator() {
                   onPress={() => handlePress(btn)}
                   className={`
                     h-20 flex-1 items-center justify-center rounded-full
-                    ${isOperator(btn) ? "bg-orange-500" : ""}
-                    ${isTop(btn) ? "bg-zinc-500" : ""}
-                    ${!isOperator(btn) && !isTop(btn) ? "bg-zinc-800" : ""}
+                    ${isOperator(btn) ? 'bg-orange-500' : ''}
+                    ${isTop(btn) ? 'bg-zinc-500' : ''}
+                    ${!isOperator(btn) && !isTop(btn) ? 'bg-zinc-800' : ''}
                   `}
                 >
-                  <Text className="text-4xl font-medium text-white">
-                    {btn}
-                  </Text>
+                  <Text className="text-4xl font-medium text-white">{btn}</Text>
                 </Pressable>
               ))}
             </View>

@@ -1,16 +1,10 @@
-import { useState } from "react";
-import {
-    FlatList,
-    Pressable,
-    Text,
-    TextInput,
-    View,
-} from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { useState } from 'react';
+import { FlatList, Pressable, Text, TextInput, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 enum EMode {
-  CREATE = "create",
-  EDIT = "edit",
+  CREATE = 'create',
+  EDIT = 'edit',
 }
 
 type ITodo = {
@@ -21,13 +15,13 @@ type ITodo = {
 
 export default function SimpleTodo() {
   const [todos, setTodos] = useState<ITodo[]>([]);
-  const [todo, setTodo] = useState("");
+  const [todo, setTodo] = useState('');
   const [mode, setMode] = useState<EMode>(EMode.CREATE);
-  const [editItemId, setEditItemId] = useState("");
+  const [editItemId, setEditItemId] = useState('');
 
   const resetForm = () => {
-    setTodo("");
-    setEditItemId("");
+    setTodo('');
+    setEditItemId('');
     setMode(EMode.CREATE);
   };
 
@@ -74,8 +68,8 @@ export default function SimpleTodo() {
               ...item,
               name: trimmedTodo,
             }
-          : item
-      )
+          : item,
+      ),
     );
 
     resetForm();
@@ -89,8 +83,8 @@ export default function SimpleTodo() {
               ...item,
               status: !item.status,
             }
-          : item
-      )
+          : item,
+      ),
     );
   };
 
@@ -105,9 +99,7 @@ export default function SimpleTodo() {
   return (
     <SafeAreaView className="flex-1 bg-slate-100">
       <View className="flex-1 px-5 pt-6">
-        <Text className="text-3xl font-bold text-slate-900">
-          My Todos
-        </Text>
+        <Text className="text-3xl font-bold text-slate-900">My Todos</Text>
 
         <Text className="mt-1 text-slate-500">
           Add, edit, complete, and delete tasks.
@@ -126,11 +118,11 @@ export default function SimpleTodo() {
             <Pressable
               onPress={submitTodo}
               className={`flex-1 rounded-xl py-3 ${
-                mode === EMode.CREATE ? "bg-blue-600" : "bg-emerald-600"
+                mode === EMode.CREATE ? 'bg-blue-600' : 'bg-emerald-600'
               }`}
             >
               <Text className="text-center font-semibold text-white">
-                {mode === EMode.CREATE ? "Add Todo" : "Save Changes"}
+                {mode === EMode.CREATE ? 'Add Todo' : 'Save Changes'}
               </Text>
             </Pressable>
 
@@ -139,9 +131,7 @@ export default function SimpleTodo() {
                 onPress={resetForm}
                 className="rounded-xl bg-slate-200 px-5 py-3"
               >
-                <Text className="font-semibold text-slate-700">
-                  Cancel
-                </Text>
+                <Text className="font-semibold text-slate-700">Cancel</Text>
               </Pressable>
             )}
           </View>
@@ -175,15 +165,15 @@ export default function SimpleTodo() {
                   <Text
                     className={`text-lg font-medium ${
                       item.status
-                        ? "text-slate-400 line-through"
-                        : "text-slate-900"
+                        ? 'text-slate-400 line-through'
+                        : 'text-slate-900'
                     }`}
                   >
                     {item.name}
                   </Text>
 
                   <Text className="mt-1 text-xs text-slate-400">
-                    {item.status ? "Completed" : "Tap to mark complete"}
+                    {item.status ? 'Completed' : 'Tap to mark complete'}
                   </Text>
                 </Pressable>
               </View>

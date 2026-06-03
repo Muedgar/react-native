@@ -1,17 +1,23 @@
-import { useMemo, useState } from "react";
-import { Pressable, Text, TextInput, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { useMemo, useState } from 'react';
+import { Pressable, Text, TextInput, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const currencies = [
-  { code: "USD", name: "US Dollar", symbol: "$", flag: "🇺🇸", rate: 1 },
-  { code: "EUR", name: "Euro", symbol: "€", flag: "🇪🇺", rate: 0.92 },
-  { code: "GBP", name: "British Pound", symbol: "£", flag: "🇬🇧", rate: 0.79 },
-  { code: "RWF", name: "Rwandan Franc", symbol: "FRw", flag: "🇷🇼", rate: 1290 },
-  { code: "KES", name: "Kenyan Shilling", symbol: "KSh", flag: "🇰🇪", rate: 129 },
+  { code: 'USD', name: 'US Dollar', symbol: '$', flag: '🇺🇸', rate: 1 },
+  { code: 'EUR', name: 'Euro', symbol: '€', flag: '🇪🇺', rate: 0.92 },
+  { code: 'GBP', name: 'British Pound', symbol: '£', flag: '🇬🇧', rate: 0.79 },
+  { code: 'RWF', name: 'Rwandan Franc', symbol: 'FRw', flag: '🇷🇼', rate: 1290 },
+  {
+    code: 'KES',
+    name: 'Kenyan Shilling',
+    symbol: 'KSh',
+    flag: '🇰🇪',
+    rate: 129,
+  },
 ];
 
 export default function CurrencyConverter() {
-  const [amount, setAmount] = useState("100");
+  const [amount, setAmount] = useState('100');
   const [from, setFrom] = useState(currencies[0]);
   const [to, setTo] = useState(currencies[3]);
 
@@ -32,9 +38,7 @@ export default function CurrencyConverter() {
   return (
     <SafeAreaView className="flex-1 bg-[#F4F7FB]">
       <View className="flex-1 px-5 pt-6">
-        <Text className="text-4xl font-extrabold text-slate-950">
-          Convert
-        </Text>
+        <Text className="text-4xl font-extrabold text-slate-950">Convert</Text>
 
         <Text className="mt-2 text-base text-slate-500">
           Fast currency exchange calculator
@@ -114,16 +118,12 @@ export default function CurrencyConverter() {
               key={currency.code}
               onPress={() => setFrom(currency)}
               className={`rounded-2xl px-4 py-3 ${
-                from.code === currency.code
-                  ? "bg-slate-950"
-                  : "bg-white"
+                from.code === currency.code ? 'bg-slate-950' : 'bg-white'
               }`}
             >
               <Text
                 className={`font-bold ${
-                  from.code === currency.code
-                    ? "text-white"
-                    : "text-slate-900"
+                  from.code === currency.code ? 'text-white' : 'text-slate-900'
                 }`}
               >
                 {currency.flag} {currency.code}
@@ -142,16 +142,12 @@ export default function CurrencyConverter() {
               key={currency.code}
               onPress={() => setTo(currency)}
               className={`rounded-2xl px-4 py-3 ${
-                to.code === currency.code
-                  ? "bg-emerald-500"
-                  : "bg-white"
+                to.code === currency.code ? 'bg-emerald-500' : 'bg-white'
               }`}
             >
               <Text
                 className={`font-bold ${
-                  to.code === currency.code
-                    ? "text-white"
-                    : "text-slate-900"
+                  to.code === currency.code ? 'text-white' : 'text-slate-900'
                 }`}
               >
                 {currency.flag} {currency.code}

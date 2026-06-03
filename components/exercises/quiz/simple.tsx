@@ -1,6 +1,6 @@
-import { useMemo, useState } from "react";
-import { Pressable, Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { useMemo, useState } from 'react';
+import { Pressable, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 type Question = {
   question: string;
@@ -10,32 +10,32 @@ type Question = {
 
 const questions: Question[] = [
   {
-    question: "What does React Native help you build?",
-    options: ["Mobile apps", "Databases", "Operating systems", "Browsers"],
-    answer: "Mobile apps",
+    question: 'What does React Native help you build?',
+    options: ['Mobile apps', 'Databases', 'Operating systems', 'Browsers'],
+    answer: 'Mobile apps',
   },
   {
-    question: "Which hook is used to store changing data?",
-    options: ["useMap", "useState", "useStyle", "useScreen"],
-    answer: "useState",
+    question: 'Which hook is used to store changing data?',
+    options: ['useMap', 'useState', 'useStyle', 'useScreen'],
+    answer: 'useState',
   },
   {
-    question: "What does JSX look like?",
-    options: ["SQL", "HTML inside JavaScript", "CSS only", "JSON only"],
-    answer: "HTML inside JavaScript",
+    question: 'What does JSX look like?',
+    options: ['SQL', 'HTML inside JavaScript', 'CSS only', 'JSON only'],
+    answer: 'HTML inside JavaScript',
   },
   {
-    question: "Which component is used for clickable UI?",
-    options: ["Pressable", "Database", "Folder", "Server"],
-    answer: "Pressable",
+    question: 'Which component is used for clickable UI?',
+    options: ['Pressable', 'Database', 'Folder', 'Server'],
+    answer: 'Pressable',
   },
 ];
 
 export default function BasicQuizApp() {
   const [step, setStep] = useState(0);
-  const [selectedAnswers, setSelectedAnswers] = useState<Record<number, string>>(
-    {}
-  );
+  const [selectedAnswers, setSelectedAnswers] = useState<
+    Record<number, string>
+  >({});
   const [finished, setFinished] = useState(false);
 
   const currentQuestion = questions[step];
@@ -99,10 +99,10 @@ export default function BasicQuizApp() {
 
             <Text className="mt-4 text-center text-lg font-semibold text-emerald-400">
               {score === questions.length
-                ? "Excellent!"
+                ? 'Excellent!'
                 : score >= questions.length / 2
-                ? "Good progress!"
-                : "Keep practicing!"}
+                  ? 'Good progress!'
+                  : 'Keep practicing!'}
             </Text>
           </View>
 
@@ -122,10 +122,10 @@ export default function BasicQuizApp() {
 
                   <Text
                     className={`mt-2 font-bold ${
-                      isCorrect ? "text-emerald-500" : "text-red-500"
+                      isCorrect ? 'text-emerald-500' : 'text-red-500'
                     }`}
                   >
-                    Your answer: {userAnswer || "Not answered"}
+                    Your answer: {userAnswer || 'Not answered'}
                   </Text>
 
                   {!isCorrect && (
@@ -199,13 +199,13 @@ export default function BasicQuizApp() {
                 onPress={() => chooseAnswer(option)}
                 className={`rounded-3xl border p-5 ${
                   isSelected
-                    ? "border-indigo-600 bg-indigo-600"
-                    : "border-slate-200 bg-white"
+                    ? 'border-indigo-600 bg-indigo-600'
+                    : 'border-slate-200 bg-white'
                 }`}
               >
                 <Text
                   className={`text-lg font-bold ${
-                    isSelected ? "text-white" : "text-slate-900"
+                    isSelected ? 'text-white' : 'text-slate-900'
                   }`}
                 >
                   {option}
@@ -219,12 +219,12 @@ export default function BasicQuizApp() {
           <Pressable
             onPress={goBack}
             className={`flex-1 rounded-3xl py-5 ${
-              step === 0 ? "bg-slate-200" : "bg-slate-900"
+              step === 0 ? 'bg-slate-200' : 'bg-slate-900'
             }`}
           >
             <Text
               className={`text-center text-lg font-extrabold ${
-                step === 0 ? "text-slate-400" : "text-white"
+                step === 0 ? 'text-slate-400' : 'text-white'
               }`}
             >
               Back
@@ -235,11 +235,11 @@ export default function BasicQuizApp() {
             onPress={goNext}
             disabled={!selected}
             className={`flex-[1.5] rounded-3xl py-5 ${
-              selected ? "bg-indigo-600" : "bg-indigo-200"
+              selected ? 'bg-indigo-600' : 'bg-indigo-200'
             }`}
           >
             <Text className="text-center text-lg font-extrabold text-white">
-              {step === questions.length - 1 ? "Finish" : "Next"}
+              {step === questions.length - 1 ? 'Finish' : 'Next'}
             </Text>
           </Pressable>
         </View>
