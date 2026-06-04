@@ -1,5 +1,5 @@
-import SimpleCalculatorTwo from '@/components/exercises/calculators/simple_2';
+import OneTodo from '@/components/exercises/todos/1';
 
 export default function HomeScreen() {
-  return <SimpleCalculatorTwo />;
+  return <OneTodo />;
 }
