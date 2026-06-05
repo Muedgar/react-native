@@ -1,3 +1,4 @@
+export * from './animations/1';
 export * from './calculators/bmi_calc';
 export * from './calculators/simple';
 export * from './calculators/simple_2';

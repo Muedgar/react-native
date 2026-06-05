@@ -1,16 +1,19 @@
 'use client'
 
 import { useState } from "react"
-import { Text, TextInput, View } from "react-native"
+import { ScrollView, Text, TextInput, View } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 
 export default function OneTodo() {
     return (
         <SafeAreaView>
-            <Header />
+           <ScrollView>
+             <Header />
             <Hero />
             <Search />
             <QuickNav />
+            <Tasks />
+           </ScrollView>
         </SafeAreaView>
     )
 }
@@ -68,7 +71,7 @@ const Search = () => {
 const QuickNav = () => {
 
     return (
-        <View className="w-full h-[250px] bg-transparent flex-row justify-evenly items-center pl-10 pr-10">
+        <View className="w-full h-[200px] bg-transparent flex-row justify-evenly items-center pl-10 pr-10">
             <View className="w-[100px] h-[150px] flex-col justify-center items-center bg-slate-200 rounded-[100px]">
                 <View className="w-[55px] h-[55px] bg-pink-600 rounded-full"></View>
                 <View className="mt-2">
@@ -92,4 +95,45 @@ const QuickNav = () => {
 }
 
 // component 5
+const Tasks = () => {
+    return (
+        <View className="w-full h-fit flex flex-col justify-start mb-4">
+            <View className="w-full h-[50px] bg-trasparent flex-row justify-between items-center pl-10 pr-10">
+                <Text className="font-bold text-3xl">Today's Tasks</Text>
+                <Text className="text-slate-400 cursor-pointer underline">See all</Text>
+            </View>
+            <View className="w-fit h-fit flex flex-row justify-evenly">
+                <TaskView color={'bg-purple-400'}/>
+                <TaskView color={'bg-green-400'}/>
+                <TaskView color={'bg-yellow-400'}/>
+            </View>
+        </View>
+    )
+}
 
+
+const TaskView = ({color}:{color: string}) => {
+   return (
+     <View className={`w-[180px] h-[215px] ml-2 mr-2 rounded-3xl ${color} elevation-xl flex flex-col flex-wrap p-4`}>
+                <View className="w-fit flex flex-row justify-between">
+                    <Text className="text-white font-bold text-lg mt-2">Team Meeting</Text>
+                    <View className="w-10 h-10 bg-slate-50 rounded-full"></View>
+                </View>
+                <View className="w-fit flex flex-row justify-between pt-3">
+                    <Text className="text-white font-light text-lg">Group discussion for the new product</Text>
+                </View>
+                <View className="w-fit flex flex-row justify-between pt-3">
+                    <Text className="text-white font-medium text-lg">10:00 AM</Text>
+                </View>
+                <View className="w-fit flex flex-row justify-between pt-3">
+                    <Text className="text-white font-medium text-md">Progress</Text>
+                    <Text className="text-white font-medium text-md">48%</Text>
+                </View>
+                <View className="w-fit flex flex-row justify-between relative pt-3">
+                    <View className="w-full h-1 bg-slate-300 absolute top-3 rounded-lg"></View>
+                    <View className="w-[48%] h-1 bg-white absolute top-3 rounded-lg"></View>
+                    <View className="w-2 h-2  bg-white absolute top-[9px] left-20 rounded-full"></View>
+                </View>
+            </View>
+   )
+}
