@@ -1,13 +1,52 @@
 'use client';
 
 import { useState } from 'react';
-import { ScrollView, Text, TextInput, View } from 'react-native';
+import {
+  ScrollView,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+
+const navItems = [
+  { label: 'To-Do', count: 18, color: 'bg-rose-500', bg: 'bg-rose-50' },
+  { label: 'Progress', count: 12, color: 'bg-amber-500', bg: 'bg-amber-50' },
+  { label: 'Done', count: 19, color: 'bg-emerald-500', bg: 'bg-emerald-50' },
+];
+
+const tasks = [
+  {
+    title: 'Team Meeting',
+    desc: 'Discuss new product direction',
+    time: '10:00 AM',
+    progress: 48,
+    color: 'bg-violet-500',
+  },
+  {
+    title: 'UI Review',
+    desc: 'Check dashboard screens',
+    time: '12:30 PM',
+    progress: 72,
+    color: 'bg-emerald-500',
+  },
+  {
+    title: 'API Cleanup',
+    desc: 'Refactor task endpoints',
+    time: '03:00 PM',
+    progress: 35,
+    color: 'bg-orange-500',
+  },
+];
 
 export default function OneTodo() {
   return (
-    <SafeAreaView>
-      <ScrollView>
+    <SafeAreaView className="flex-1 bg-slate-50">
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerClassName="pb-10"
+      >
         <Header />
         <Hero />
         <Search />
@@ -18,131 +57,149 @@ export default function OneTodo() {
   );
 }
 
-// component 1
-
 const Header = () => {
   return (
-    <View className="h-20 w-full flex-row items-center justify-between bg-transparent pl-10 pr-10">
-      <View className="h-14 w-14 items-center bg-transparent">
-        <Text className="mt-[2px] h-[90%] w-[90%] rounded-full bg-slate-300"></Text>
+    <View className="flex-row items-center justify-between px-6 pt-4">
+      <View className="h-12 w-12 items-center justify-center rounded-full bg-white shadow-sm">
+        <Text className="text-xl">👋</Text>
       </View>
-      <View className="h-14 w-14 items-center bg-transparent shadow-lg shadow-green-500">
-        <Text className="mt-[2px] h-[90%] w-[90%] rounded-2xl bg-slate-300"></Text>
-      </View>
+
+      <TouchableOpacity className="h-12 w-12 items-center justify-center rounded-2xl bg-slate-900 shadow-md">
+        <Text className="text-xl text-white">🔔</Text>
+      </TouchableOpacity>
     </View>
   );
 };
-
-// component 2
 
 const Hero = () => {
   return (
-    <View className="h-[150px] w-full flex-col items-center justify-start bg-transparent pl-10 pr-10 pt-[20px]">
-      <View className="h-fit w-full bg-transparent">
-        <Text className="ml-2 mt-2 text-xl font-light">
-          Good Morning, Rifat!
-        </Text>
-      </View>
-      <View className="h-fit w-full bg-transparent">
-        <Text className="ml-2 mt-2 text-4xl font-bold">
-          You have <Text className="text-purple-800">49 tasks</Text> this month
-        </Text>
-      </View>
+    <View className="px-6 pt-8">
+      <Text className="text-base font-medium text-slate-500">
+        Good morning, Rifat
+      </Text>
+
+      <Text className="mt-3 text-4xl font-extrabold leading-tight text-slate-950">
+        You have <Text className="text-violet-600">49 tasks</Text>
+        {'\n'}this month
+      </Text>
     </View>
   );
 };
-
-// component 3
 
 const Search = () => {
   const [search, setSearch] = useState('');
+
   return (
-    <View className="h-[100px] w-full flex-col items-center justify-start bg-transparent pl-10 pr-10 pt-[20px]">
-      <View className="h-[50px] w-[90%] flex-row rounded-2xl bg-slate-100">
-        <View className="h-full w-[17%] flex-col items-center justify-center rounded-bl-2xl rounded-tl-2xl bg-transparent">
-          <View className="h-[80%] w-[80%] rounded-full bg-white"></View>
-        </View>
-        <View className="h-full w-[83%] overflow-hidden rounded-br-2xl rounded-tr-2xl bg-transparent">
-          <TextInput
-            className="h-full w-full overflow-x-auto bg-slate-100 p-2 text-xl font-light"
-            value={search}
-            onChangeText={setSearch}
-          />
-        </View>
+    <View className="px-6 pt-8">
+      <View className="h-14 flex-row items-center rounded-3xl bg-white px-4 shadow-sm">
+        <Text className="mr-3 text-lg text-slate-400">🔍</Text>
+
+        <TextInput
+          className="flex-1 text-base text-slate-800"
+          placeholder="Search your tasks..."
+          placeholderTextColor="#94a3b8"
+          value={search}
+          onChangeText={setSearch}
+        />
       </View>
     </View>
   );
 };
-
-// component 4
 
 const QuickNav = () => {
   return (
-    <View className="h-[200px] w-full flex-row items-center justify-evenly bg-transparent pl-10 pr-10">
-      <View className="h-[150px] w-[100px] flex-col items-center justify-center rounded-[100px] bg-slate-200">
-        <View className="h-[55px] w-[55px] rounded-full bg-pink-600"></View>
-        <View className="mt-2">
-          <Text className="text-sm">To-Do</Text>
-        </View>
-      </View>
-      <View className="h-[150px] w-[100px] flex-col items-center justify-center rounded-[100px] bg-slate-200">
-        <View className="h-[55px] w-[55px] rounded-full bg-yellow-600"></View>
-        <View className="mt-2">
-          <Text className="text-sm">In-Progress</Text>
-        </View>
-      </View>
-      <View className="h-[150px] w-[100px] flex-col items-center justify-center rounded-[100px] bg-slate-200">
-        <View className="h-[55px] w-[55px] rounded-full bg-green-600"></View>
-        <View className="mt-2">
-          <Text className="text-sm">Done</Text>
-        </View>
+    <View className="mt-8 px-6">
+      <View className="flex-row justify-between">
+        {navItems.map((item) => (
+          <TouchableOpacity
+            key={item.label}
+            className={`w-[31%] rounded-3xl ${item.bg} p-4`}
+          >
+            <View
+              className={`mb-4 h-12 w-12 items-center justify-center rounded-2xl ${item.color}`}
+            >
+              <Text className="text-lg text-white">✓</Text>
+            </View>
+
+            <Text className="text-xl font-extrabold text-slate-950">
+              {item.count}
+            </Text>
+
+            <Text className="mt-1 text-sm font-medium text-slate-500">
+              {item.label}
+            </Text>
+          </TouchableOpacity>
+        ))}
       </View>
     </View>
   );
 };
 
-// component 5
 const Tasks = () => {
   return (
-    <View className="mb-4 flex h-fit w-full flex-col justify-start">
-      <View className="bg-trasparent h-[50px] w-full flex-row items-center justify-between pl-10 pr-10">
-        <Text className="text-3xl font-bold">Today's Tasks</Text>
-        <Text className="cursor-pointer text-slate-400 underline">See all</Text>
+    <View className="mt-10">
+      <View className="mb-5 flex-row items-center justify-between px-6">
+        <Text className="text-2xl font-extrabold text-slate-950">
+          Today’s Tasks
+        </Text>
+
+        <TouchableOpacity>
+          <Text className="font-semibold text-violet-600">See all</Text>
+        </TouchableOpacity>
       </View>
-      <View className="flex h-fit w-fit flex-row justify-evenly">
-        <TaskView color={'bg-purple-400'} />
-        <TaskView color={'bg-green-400'} />
-        <TaskView color={'bg-yellow-400'} />
-      </View>
+
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerClassName="gap-4 px-6"
+      >
+        {tasks.map((task) => (
+          <TaskView key={task.title} task={task} />
+        ))}
+      </ScrollView>
     </View>
   );
 };
 
-const TaskView = ({ color }: { color: string }) => {
+const TaskView = ({
+  task,
+}: {
+  task: {
+    title: string;
+    desc: string;
+    time: string;
+    progress: number;
+    color: string;
+  };
+}) => {
   return (
-    <View
-      className={`ml-2 mr-2 h-[215px] w-[180px] rounded-3xl ${color} elevation-xl flex flex-col flex-wrap p-4`}
-    >
-      <View className="flex w-fit flex-row justify-between">
-        <Text className="mt-2 text-lg font-bold text-white">Team Meeting</Text>
-        <View className="h-10 w-10 rounded-full bg-slate-50"></View>
-      </View>
-      <View className="flex w-fit flex-row justify-between pt-3">
-        <Text className="text-lg font-light text-white">
-          Group discussion for the new product
+    <View className={`h-[230px] w-[190px] rounded-[32px] ${task.color} p-5`}>
+      <View className="flex-row items-start justify-between">
+        <Text className="w-[110px] text-xl font-extrabold text-white">
+          {task.title}
         </Text>
+
+        <View className="h-10 w-10 items-center justify-center rounded-full bg-white/25">
+          <Text className="text-white">⋯</Text>
+        </View>
       </View>
-      <View className="flex w-fit flex-row justify-between pt-3">
-        <Text className="text-lg font-medium text-white">10:00 AM</Text>
-      </View>
-      <View className="flex w-fit flex-row justify-between pt-3">
-        <Text className="text-md font-medium text-white">Progress</Text>
-        <Text className="text-md font-medium text-white">48%</Text>
-      </View>
-      <View className="relative flex w-fit flex-row justify-between pt-3">
-        <View className="absolute top-3 h-1 w-full rounded-lg bg-slate-300"></View>
-        <View className="absolute top-3 h-1 w-[48%] rounded-lg bg-white"></View>
-        <View className="absolute left-20  top-[9px] h-2 w-2 rounded-full bg-white"></View>
+
+      <Text className="mt-4 text-sm leading-5 text-white/80">{task.desc}</Text>
+
+      <View className="mt-auto">
+        <Text className="mb-4 text-lg font-bold text-white">{task.time}</Text>
+
+        <View className="mb-2 flex-row justify-between">
+          <Text className="text-sm font-semibold text-white/80">Progress</Text>
+          <Text className="text-sm font-bold text-white">{task.progress}%</Text>
+        </View>
+
+        <View className="h-2 overflow-hidden rounded-full bg-white/25">
+          <View
+            className="h-full rounded-full bg-white"
+            style={{ width: `${task.progress}%` }}
+          />
+        </View>
       </View>
     </View>
   );
