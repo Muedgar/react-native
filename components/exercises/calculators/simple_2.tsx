@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { useState, type ReactElement } from 'react';
 import { Pressable, Text, View } from 'react-native';
@@ -15,7 +15,7 @@ interface ButtonPressEvent {
 interface CalculatorButtonRow extends Array<string> {}
 
 export default function SimpleCalculatorTwo(): ReactElement {
-  const [expression, setExpression] = useState('')
+  const [expression, setExpression] = useState('');
   const [result, setResult] = useState('0');
   const buttons: CalculatorButtonRow[] = [
     ['⌫', 'C', '%', '÷'],
@@ -56,7 +56,7 @@ export default function SimpleCalculatorTwo(): ReactElement {
     } catch {
       if (showError) setResult('Invalid expression');
     }
-  }
+  };
 
   const handlePress = (btn: string) => {
     // add to preview
@@ -81,7 +81,9 @@ export default function SimpleCalculatorTwo(): ReactElement {
     if (btn == '±') {
       if (!expression) return;
 
-      const next = expression.startsWith('-') ? expression.slice(1) : `-${expression}`;
+      const next = expression.startsWith('-')
+        ? expression.slice(1)
+        : `-${expression}`;
 
       setExpression(next);
       calculate(next);
@@ -101,7 +103,7 @@ export default function SimpleCalculatorTwo(): ReactElement {
 
     const next = expression + btn;
     setExpression(next);
-    calculate(next)
+    calculate(next);
   };
 
   const isOperator = (btn: string) => ['÷', '×', '-', '+', '='].includes(btn);
@@ -109,30 +111,32 @@ export default function SimpleCalculatorTwo(): ReactElement {
 
   return (
     <SafeAreaView className="flex-1 bg-white">
-      <View className='w-full h-full'>
-        <View className='w-full h-[200px] p-4 mt-20'>
-            <View className='w-full h-[65%]'>
-              <Text className='w-full h-full text-right pt-5 pr-5 font-bold text-3xl'>
-                {expression || '0'}
-              </Text>
-            </View>
-            <View className='w-full h-[35%]'>
-              <Text className='w-full h-full text-right pt-5 pr-5 font-bold text-3xl'>
-                {result}
-              </Text>
-            </View>
+      <View className="h-full w-full">
+        <View className="mt-20 h-[200px] w-full p-4">
+          <View className="h-[65%] w-full">
+            <Text className="h-full w-full pr-5 pt-5 text-right text-3xl font-bold">
+              {expression || '0'}
+            </Text>
+          </View>
+          <View className="h-[35%] w-full">
+            <Text className="h-full w-full pr-5 pt-5 text-right text-3xl font-bold">
+              {result}
+            </Text>
+          </View>
         </View>
         {buttons.map((button, index) => (
-          <View key={index} className="h-[100px] w-full flex-row justify-evenly p-4">
-            {button.map((btn, index) => (
-                <Pressable
+          <View
             key={index}
-            onPress={() => handlePress(btn)}
+            className="h-[100px] w-full flex-row justify-evenly p-4"
           >
-            <View className="h-[70px] w-[70px] flex flex-col justify-center items-center cursor-pointer bg-amber-200 rounded-full">
-              <Text className="h-[70px] w-[70px] text-4xl font-bold text-center pt-3">{btn}</Text>
-            </View>
-          </Pressable>
+            {button.map((btn, index) => (
+              <Pressable key={index} onPress={() => handlePress(btn)}>
+                <View className="flex h-[70px] w-[70px] cursor-pointer flex-col items-center justify-center rounded-full bg-amber-200">
+                  <Text className="h-[70px] w-[70px] pt-3 text-center text-4xl font-bold">
+                    {btn}
+                  </Text>
+                </View>
+              </Pressable>
             ))}
           </View>
         ))}
