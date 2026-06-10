@@ -1,13 +1,2 @@
-export * from './animations/1';
-export * from './calculators/bmi_calc';
-export * from './calculators/simple';
-export * from './calculators/simple_2';
-export * from './clocks/simple';
-export * from './clocks/stopwatch';
-export * from './couters/counter';
-export * from './currency converter/simple';
-export * from './image gallery/simple';
-export * from './quiz/simple';
-export * from './todos/1_page_1';
-export * from './todos/1_page_2';
-export * from './todos/simple';
+// Practice exercise files live in this folder, but the active app is now the
+// todo app under app/ and components/todos/.
