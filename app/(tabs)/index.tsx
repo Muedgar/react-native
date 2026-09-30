@@ -1,21 +1,14 @@
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { Link, router } from 'expo-router';
 import { useMemo, useState } from 'react';
 import {
-  ScrollView,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
+  ScrollView
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { TodoCard } from '@/components/todos/todo-card';
 import {
-  statusLabels,
   TodoStatus,
-  useTodos,
+  useTodos
 } from '@/components/todos/todo-store';
+import ThreeScreen from './three';
 
 export default function HomeScreen() {
   const { todos, toggleStatus } = useTodos();
@@ -51,7 +44,8 @@ export default function HomeScreen() {
         showsVerticalScrollIndicator={false}
         contentContainerClassName="pb-12"
       >
-        <View className="flex-row items-center justify-between px-6 pt-4">
+        <ThreeScreen />
+        {/* <View className="flex-row items-center justify-between px-6 pt-4">
           <View className="h-12 w-12 items-center justify-center rounded-full bg-white shadow-sm">
             <MaterialCommunityIcons
               name="checkbox-marked-circle-outline"
@@ -150,7 +144,7 @@ export default function HomeScreen() {
               onStatusPress={() => toggleStatus(todo.id)}
             />
           ))}
-        </View>
+        </View> */}
       </ScrollView>
     </SafeAreaView>
   );

@@ -1,4 +1,5 @@
 import { Tabs } from 'expo-router';
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import React from 'react';
 
 import { HapticTab } from '@/components/haptic-tab';
@@ -23,6 +24,15 @@ export default function TabLayout() {
           title: 'Tasks',
           tabBarIcon: ({ color }) => (
             <IconSymbol size={28} name="checkmark.circle.fill" color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="three"
+        options={{
+          title: '3D Box',
+          tabBarIcon: ({ color }) => (
+            <MaterialIcons size={28} name="view-in-ar" color={color} />
           ),
         }}
       />

@@ -25,6 +25,31 @@ In the output, you'll find options to open the app in a
 
 You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
 
+## React Three Fiber box
+
+Run `npm start`, open the app in Expo Go, and select the **3D Box** tab.
+For a browser, run `npm run web`. Tap/click the cube to change its size and
+color; use the button to pause or resume rotation.
+
+- `components/exercises/three/box.tsx`: the mesh, box geometry, material, and animation.
+- `app/(tabs)/three.tsx`: the camera, lights, and screen controls.
+- `components/exercises/three/scene-canvas.tsx`: native Canvas using Expo GL;
+  the `.web.tsx` version uses the browser Canvas.
+
+The example pins React Three Fiber 9.3.0 for this Expo 54 / React Native 0.81
+runtime. Newer Fiber releases can call unsupported performance APIs in development.
+Metro resolves Three.js to its ES module build to avoid Node-only warning calls.
+After changing Metro configuration, restart with `npx expo start --clear`.
+Native GL is best tried on a physical device. If using a custom development
+build, rebuild it after installing the native dependencies.
+
+If the iOS simulator shows the controls but no cube, try Expo Go on a physical
+phone or open `http://localhost:8081/three` while Expo is running. Expo GL can
+produce a blank canvas in the iOS simulator; see the
+[maintainer discussion](https://github.com/pmndrs/react-three-fiber/discussions/3064).
+
+See the [React Three Fiber docs](https://r3f.docs.pmnd.rs/getting-started/installation).
+
 ## Get a fresh project
 
 When you're ready, run:
