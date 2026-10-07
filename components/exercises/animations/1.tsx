@@ -1,4 +1,5 @@
-import { Button, StyleSheet, View } from 'react-native';
+import { useEffect } from 'react';
+import { Button, View } from 'react-native';
 import Animated, {
   Easing,
   useAnimatedStyle,
@@ -20,9 +21,16 @@ export default function AnimationOne() {
     };
   });
 
+  useEffect(() => {
+    
+  }, []);
+
   return (
-    <View style={styles.container}>
-      <Animated.View style={[styles.box, style]} />
+    <View className='flex flex-1 justify-center items-center'>
+      <Animated.View className="absolute top-10">
+        <Animated.View className="w-32 h-32 bg-red-300 rounded-full" style={[style]} />
+        <Animated.View className="absolute top-5 left-5 w-10 h-10 bg-black rounded-full" />
+      </Animated.View>
       <Button
         title="toggle"
         onPress={() => {
@@ -32,17 +40,3 @@ export default function AnimationOne() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  box: {
-    width: 100,
-    height: 80,
-    backgroundColor: 'black',
-    margin: 30,
-  },
-});
