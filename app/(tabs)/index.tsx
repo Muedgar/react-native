@@ -4,7 +4,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import AnimationOne from '@/components/exercises/animations/1';
+import SnakeGame from '@/components/exercises/animations/1';
 import {
   TodoStatus,
   useTodos
@@ -45,7 +45,7 @@ export default function HomeScreen() {
         contentContainerClassName="pb-12"
       >
         
-        <AnimationOne />
+        <SnakeGame />
       </ScrollView>
     </SafeAreaView>
   );
